@@ -18,7 +18,7 @@ class Solution:
         def bst(front,back):
             if front > back:
                 return None
-            mid = (front + back) // 2
+            mid = front + (back - front) // 2
             root = TreeNode(l[mid])
             root.left = bst(front,mid - 1)
             root.right = bst(mid + 1,back)
