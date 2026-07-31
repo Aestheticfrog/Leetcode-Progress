@@ -10,15 +10,13 @@ class Solution:
         q.append(source)
         while q:
             cur = q.popleft()
+            if cur == destination:
+                return True
             if visited[cur] == 0:
                 visited[cur] = 1
                 for n in adj[cur]:
                     if visited[n] == 0:
                         q.append(n)
-        
-        if visited[destination] and visited[source]:
-            return True
-        else:
-            return False     
+        return False     
 
 
