@@ -3,11 +3,8 @@ class Solution:
         adj = [[] for _ in range(numCourses)]
         indegree = [0] * numCourses
         for u,v in prerequisites:
-            if [v,u] in prerequisites:
-                return False
-            else:
-                adj[v].append(u)
-                indegree[u] += 1
+            adj[v].append(u)
+            indegree[u] += 1
         q = deque()
         for i in range(numCourses):
             if indegree[i] == 0:
