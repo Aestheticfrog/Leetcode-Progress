@@ -1,19 +1,15 @@
 class Solution:
     def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
-        graph = defaultdict(list)
-        def helper(u,v):
-            if u == v:
-                return True
-            visited.add(u)
-            for n in graph[u]:
-                if n not in visited:
-                    if helper(n,v):
-                        return True
-            return False
+        n = len(edges)
+        parent = list(range(n + 1))
+        def find(u):
+            if parent[u] != u:
+                parent[u] = find(parent[u])
+            return parent[u]
         for u,v in edges:
-            visited = set()
-            if helper(u,v):
+            t1 = find(u)
+            t2 = find(v)
+            if t1 == t2:
                 return [u,v]
-            graph[u].append(v)
-            graph[v].append(u)
-        return None
+            parent[t1] = t2
+        return []
